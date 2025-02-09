@@ -121,3 +121,14 @@ WHERE tpep_dropoff_datetime >= "2024-03-01" AND tpep_dropoff_datetime <= "2024-0
 - Clustering is not always beneficial when working with small tables (data size < 1GB), when columns have very few unique values, or queries dont filter on clustered columns. This could lead to increased storage costs through metadata overhead or slower insert performance, since bigquery would have to reorder and sort rows based on the clustering column.
 
 <b>Answer</b>: False
+
+### Q9. Write a SELECT count(*) query FROM the materialized table you created. How many bytes does it estimate will be read? Why?
+
+- Using the following query to count the number of rows on the materialized table:
+
+```SQL
+SELECT COUNT(*) FROM `nytaxi.yellow_tripdata_non_partinioned`
+```
+
+<b>Answer</b>: 
+This query processes 0B, since it does not scan the table data and only fetches the row count information from the precomputed metadata.
